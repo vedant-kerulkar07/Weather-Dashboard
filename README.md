@@ -1,7 +1,8 @@
 <h1>🌦️ Weather Dashboard</h1></br>
 A simple and responsive weather app built with React.js and the OpenWeatherMap API. It allows users to search for the current weather in any city around the world, displaying <br>temperature, humidity, wind speed, and a dynamic weather icon.<br>
 <h1>🚀 Features</h1><br>
-🔍 Search for any city worldwide<br>
+
+<br>🔍 Search for any city worldwide<br>
 
 🌡️ View temperature in Celsius<br>
 
