@@ -26,3 +26,8 @@ Vite (React development tool)<br>
 HTML, CSS<br>
 
 Git & GitHub<br>
+
+<h1>✨ Future Improvements</h1><br>
+
+Location auto-detection using Geolocation API
+
