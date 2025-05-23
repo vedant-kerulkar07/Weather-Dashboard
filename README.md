@@ -1,12 +1,16 @@
-# React + Vite
+<h1>🌦️ Weather Dashboard</h1></br>
+A simple and responsive weather app built with React.js and the OpenWeatherMap API. It allows users to search for the current weather in any city around the world, displaying <br>temperature, humidity, wind speed, and a dynamic weather icon.<br>
+<h1>🚀 Features</h1><br>
+🔍 Search for any city worldwide<br>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌡️ View temperature in Celsius<br>
 
-Currently, two official plugins are available:
+💧 Display humidity<br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌬️ Show wind speed<br>
 
-## Expanding the ESLint configuration
+🌤️ Dynamic weather icons (Clear, Clouds, Rain, Snow, etc.)<br>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⚡ Automatically fetches weather for a default city on load (Pune)<br>
+
+📱 Responsive UI with clean CSS design<br>
