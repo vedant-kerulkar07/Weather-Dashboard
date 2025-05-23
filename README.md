@@ -16,13 +16,13 @@ A simple and responsive weather app built with React.js and the OpenWeatherMap A
 
 📱 Responsive UI with clean CSS design<br>
 
-🛠️ Technologies Used<br>
+<h1>🛠️ Technologies Used</h1><br>
 React.js (Functional Components & Hooks)<br>
 
-OpenWeatherMap API
+OpenWeatherMap API<br>
 
-Vite (React development tool)
+Vite (React development tool)<br>
 
-HTML, CSS
+HTML, CSS<br>
 
-Git & GitHub
+Git & GitHub<br>
