@@ -2,7 +2,7 @@
 A simple and responsive weather app built with React.js and the OpenWeatherMap API. It allows users to search for the current weather in any city around the world, displaying <br>temperature, humidity, wind speed, and a dynamic weather icon.<br>
 <h1>🚀 Features</h1><br>
 
-<br>🔍 Search for any city worldwide<br>
+🔍 Search for any city worldwide<br>
 
 🌡️ View temperature in Celsius<br>
 
@@ -15,3 +15,14 @@ A simple and responsive weather app built with React.js and the OpenWeatherMap A
 ⚡ Automatically fetches weather for a default city on load (Pune)<br>
 
 📱 Responsive UI with clean CSS design<br>
+
+🛠️ Technologies Used<br>
+React.js (Functional Components & Hooks)<br>
+
+OpenWeatherMap API
+
+Vite (React development tool)
+
+HTML, CSS
+
+Git & GitHub
