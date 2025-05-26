@@ -54,9 +54,50 @@ import humidity_icon from '../assets/humidity.png'
             console.error("Error in featching weather data")
         }
     }
-    useEffect(()=>{
-        search("Pune");
-    },[])
+    //live location
+  const fetchWeatherByCoords = async (lat, lon) => {
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${
+        import.meta.env.VITE_APP_ID
+      }`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+       if(!response.ok){
+                alert(data.message)
+                return
+            }
+
+      const icon = allIcons[data.weather[0].icon] || clear_icon;
+      setWeatherData({
+        humidity: data.main.humidity,
+        windSpeed: data.wind.speed,
+        temperature: Math.floor(data.main.temp),
+        location: data.name,
+        icon,
+      });
+    } catch (error) {
+      console.error("Error fetching weather by coordinates", error);
+    }
+  };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeatherByCoords(latitude, longitude);
+        },
+        (error) => {
+          console.warn("Geolocation failed:", error);
+          fetchWeatherByCity("Pune"); 
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+      fetchWeatherByCity("Pune");
+    }
+  }, []);
     return(
         <div className="weather">
             <div className="search-bar">
