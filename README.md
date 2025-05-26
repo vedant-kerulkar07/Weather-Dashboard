@@ -32,4 +32,4 @@ Git & GitHub<br>
 Location auto-detection using Geolocation API
 
 <h1>🔥 Netlify's </h1>
-react-weatherdashboard.netlify.app
+🌐 https://react-weatherdashboard.netlify.app
