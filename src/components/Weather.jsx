@@ -40,7 +40,7 @@ import humidity_icon from '../assets/humidity.png'
                 alert(data.message)
                 return
             }
-            console.log(data);
+            
             const icon = allIcons[data.weather[0].icon] || clear_icon
             setWeatherData({
                 humidity: data.main.humidity,

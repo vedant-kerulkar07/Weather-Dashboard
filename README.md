@@ -16,6 +16,8 @@ A simple and responsive weather app built with React.js and the OpenWeatherMap A
 
 📱 Responsive UI with clean CSS design<br>
 
+🖼️ Host Live Project For real-world usage<br>
+
 <h1>🛠️ Technologies Used</h1><br>
 React.js (Functional Components & Hooks)<br>
 
@@ -32,4 +34,5 @@ Git & GitHub<br>
 Location auto-detection using Geolocation API
 
 <h1>🔥 Netlify's </h1>
+Hosted Weather Dashboard Live On Netlify
 🌐 https://react-weatherdashboard.netlify.app
