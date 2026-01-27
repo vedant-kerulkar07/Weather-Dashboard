@@ -17,6 +17,8 @@ export const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState([]);
 
+  const API_KEY = import.meta.env.VITE_APP_ID;
+
   const allIcons = {
     "01d": clear_icon,
     "01n": clear_icon,
@@ -34,12 +36,15 @@ export const Weather = () => {
     "13n": snow_icon,
   };
 
+  
+//  Search by City 
+  
   const search = async (city) => {
     if (!city) return alert("Enter city name");
 
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       );
       const data = await res.json();
       if (!res.ok) return alert(data.message);
@@ -52,16 +57,19 @@ export const Weather = () => {
         icon: allIcons[data.weather[0].icon] || clear_icon,
       });
 
-      fetchForecast(city);
+      fetchForecastByCity(city);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const fetchForecast = async (city) => {
+  
+//  Forecast by City 
+ 
+  const fetchForecastByCity = async (city) => {
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
       );
       const data = await res.json();
 
@@ -78,13 +86,80 @@ export const Weather = () => {
     }
   };
 
+
+// Auto Detect Location 
+ 
+  const getCurrentLocationWeather = () => {
+    if (!navigator.geolocation) {
+      search("Pune");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+          // Current weather
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+          );
+          const data = await res.json();
+
+          setWeatherData({
+            humidity: data.main.humidity,
+            windSpeed: data.wind.speed,
+            temperature: Math.floor(data.main.temp),
+            location: data.name,
+            icon: allIcons[data.weather[0].icon] || clear_icon,
+          });
+
+          // Forecast
+          fetchForecastByCoords(latitude, longitude);
+        } catch (err) {
+          console.error(err);
+          search("Pune");
+        }
+      },
+      () => {
+        // Permission denied → fallback
+        search("Pune");
+      }
+    );
+  };
+
+ 
+ // Forecast by Coordinates 
+ 
+  const fetchForecastByCoords = async (lat, lon) => {
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      );
+      const data = await res.json();
+
+      const formatted = data.list.slice(0, 12).map((item) => ({
+        time: item.dt_txt.split(" ")[1].slice(0, 5),
+        temp: Math.round(item.main.temp),
+        humidity: item.main.humidity,
+        wind: item.wind.speed,
+      }));
+
+      setForecastData(formatted);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // On App Load */
+  
   useEffect(() => {
-    search("Pune");
+    getCurrentLocationWeather();
   }, []);
 
   return (
     <div className="weather">
-      {/* 🔍 Search */}
+      {/* Search */}
       <div className="search-bar">
         <input ref={inputRef} type="text" placeholder="Search city..." />
         <img
@@ -96,7 +171,7 @@ export const Weather = () => {
 
       {weatherData && (
         <div className="weather-content">
-          {/* ⬅️ LEFT */}
+          {/*  LEFT */}
           <div className="weather-left">
             <img src={weatherData.icon} alt="" className="weather-icon" />
             <h1 className="temperature">{weatherData.temperature}°C</h1>
@@ -121,7 +196,7 @@ export const Weather = () => {
             </div>
           </div>
 
-          {/* ➡️ RIGHT */}
+          {/* RIGHT */}
           <div className="weather-right">
             {forecastData.length > 0 && (
               <WeatherCharts data={forecastData} />
