@@ -30,4 +30,4 @@ Users can easily search for any city and view temperature, humidity, wind speed,
 
 🚀 Hosted on Netlify<br>
 🌐 Live URL:
-👉 https://react-weatherdashboard.netlify.app
+👉 https://forecastdesk.netlify.app/
